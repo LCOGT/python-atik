@@ -1,19 +1,30 @@
 %module atik
 %{
+#define SWIG_FILE_WITH_INIT
 #include <atikccdusb.h>
 %}
 
+%init
+%{
+import_array();
+%}
+
 %include "typemaps.i";
+%include "numpy.i";
 
 %apply int *OUTPUT {CAMERA_TYPE *type}
 %apply int *OUTPUT {COOLER_TYPE *cooler}
 %apply int *OUTPUT {COOLING_STATE *state}
+
 %typemap(in, numinputs=0) char **name (char *temp) {
     $1 = &temp;
 }
+
 %typemap(argout) char **name {
     %append_output(PyString_FromString(*$1));
 }
+
+%apply (unsigned short *ARGOUT_ARRAY1, int DIM1) {(unsigned short* imgBuf, unsigned imgSize)}
 
 class AtikCamera {
   public:
@@ -51,8 +62,9 @@ class AtikCamera {
 
 %inline
 %{
+    #define MAX_CAMERA_COUNT 16
 
-#define MAX_CAMERA_COUNT 16
+    bool AtikDebug = 0;
 
     AtikCamera *getCamera(const int deviceNumber)
     {

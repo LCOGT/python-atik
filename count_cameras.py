@@ -1,4 +1,6 @@
 import atik
+import datetime as dt
+import time
 
 number_of_cameras = atik.numberOfCameras()
 
@@ -13,7 +15,28 @@ if number_of_cameras:
     print open
 
     capabilities = camera.getCapabilities()
-    print capabilities
+    print list(enumerate(capabilities))
+
+    pixelCountX = capabilities[8]
+    pixelCountY = capabilities[9]
+
+    width  = camera.imageWidth(pixelCountX, 1)
+    height = camera.imageHeight(pixelCountY, 1)
+
+    print 'Width = {}, Height = {}'.format(width, height)
+
+    camera.startExposure(False)
+    time.sleep(2)
+    start = dt.datetime.utcnow()
+    success = camera.readCCD(0, 0, pixelCountX, pixelCountY, 1, 1)
+    time.sleep(2)
+    end = dt.datetime.utcnow()
+    print 'Camera readout {}'.format(success)
+    print 'Duration {}s'.format((end - start).total_seconds())
+
+    success, data = camera.getImage(width*height)
+    print data
+    print 'Mean = {}'.format(data.mean())
 
     print camera.getTemperatureSensorStatus(0)
 
