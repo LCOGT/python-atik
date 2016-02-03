@@ -15,7 +15,7 @@ if number_of_cameras:
     capabilities = camera.getCapabilities()
     print capabilities
 
-    print camera.getTemperatureStatus(0)
+    print camera.getTemperatureSensorStatus(0)
 
     close = camera.close()
     print close
