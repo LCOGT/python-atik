@@ -1,0 +1,5 @@
+build
+atik.py*
+atik_wrap*
+dist
+python_atik.egg-info
