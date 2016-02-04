@@ -12,6 +12,8 @@ import_array();
 %include "typemaps.i";
 %include "numpy.i";
 
+%feature("autodoc", 1);
+
 %apply int *OUTPUT {CAMERA_TYPE *type}
 %apply int *OUTPUT {COOLER_TYPE *cooler}
 %apply int *OUTPUT {COOLING_STATE *state}
