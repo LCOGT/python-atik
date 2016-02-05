@@ -32,7 +32,7 @@ camera.open()
 
 # Get dimensions
 capabilities = camera.get_capabilities()
-width, height = capabilities[7:9]
+width, height = capabilities[8:10]
 
 # Perform a manual timed exposure
 camera.start_exposure(False)
@@ -40,5 +40,8 @@ camera.start_exposure(False)
 time.sleep(5)
 
 camera.read_ccd(0, 0, width, height, 1, 1)
-success, data = camera.get_image(width, height)
+success, data = camera.get_image(width * height)
+
+camera.close()
 ```
+

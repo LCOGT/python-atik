@@ -1,0 +1,6 @@
+* Add exception handling to swig interface
+* Add utility functio to C++ class to add start and end time
+  (as close to driver as possible to get the most accurate timing)
+* Explore Cython to compare timings (if SWIG looks to be a bottleneck)
+* Return numpy array with correct shape from get_image call
+* Return capabilities as a dictionary to make it easier to identifiy arguments.
