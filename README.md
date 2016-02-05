@@ -23,7 +23,7 @@ Usage
 
 To take a 5s exposure:-
 
-```
+```python
 import atik
 import time
 
