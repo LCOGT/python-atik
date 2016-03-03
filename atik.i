@@ -63,6 +63,25 @@
    (unsigned short* imgBuf, unsigned imgSize)
 }
 
+/* Enumerations */
+%inline %{
+    struct COOLING_MAP {
+        enum { COOLING_INACTIVE, COOLING_ON, COOLING_SETPOINT, WARMING_UP };
+    };
+
+    struct CAMERA_MAP {
+        enum { ORIGINAL_HSC = 1, IC24, QUICKER, IIDC, SONY_SCI };
+    };
+
+    struct COOLER_MAP {
+        enum { COOLER_NONE, COOLER_ALWAYSON, COOLER_ONOFF, COOLER_SELECTPOWER, COOLER_SETPOINT };
+    };
+
+    struct PARAM_MAP {
+        enum { QUICKER_START_EXPOSURE_DELAY = 1, QUICKER_READ_CCD_DELAY, MAX_PACKET_SIZE };
+    };
+%}
+
 /* Class and members to be wrapped (taken from atikccdusb.h) */
 class AtikCamera {
   public:
