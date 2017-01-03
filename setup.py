@@ -16,7 +16,7 @@ extensions = [Extension('_atik', ['atik.i'],
                         include_dirs=[np.get_include()])]
 
 setup(name    = 'python-atik',
-      version = '0.1',
+      version = '0.2',
       author  = 'Martin Norbury',
       description = '''Simple swig wrappings around ATIK camera''',
       ext_modules = extensions,

@@ -90,7 +90,7 @@ class AtikCamera {
     virtual bool open() = 0;
     virtual void close() = 0;
     virtual bool setParam(PARAM_TYPE code, long value) = 0;
-    virtual bool getCapabilities(const char **name, CAMERA_TYPE *type, bool *OUTPUT, bool* OUTPUT, bool* OUTPUT, bool* OUTPUT, unsigned *OUTPUT, unsigned* OUTPUT, unsigned* OUTPUT, double* OUTPUT, double* OUTPUT, unsigned* OUTPUT, unsigned* OUTPUT, unsigned *OUTPUT, COOLER_TYPE* cooler) = 0;
+    virtual bool getCapabilities(const char **name, CAMERA_TYPE *type, bool *OUTPUT, bool* OUTPUT, bool* OUTPUT, bool* OUTPUT, unsigned *OUTPUT, unsigned* OUTPUT, unsigned* OUTPUT, double* OUTPUT, double* OUTPUT, unsigned* OUTPUT, unsigned* OUTPUT, unsigned *OUTPUT, COOLER_TYPE* cooler, COLOUR_TYPE* colour, int* offsetS, int* offsetY, bool* supportsLoneExposure, double* minShortExposure, double* maxShortExposure) = 0;
     virtual bool getTemperatureSensorStatus(unsigned sensor, float *OUTPUT) = 0;
     virtual bool getCoolingStatus(COOLING_STATE *state, float* OUTPUT, float *OUTPUT) = 0;
     virtual bool setCooling(float targetTemp) = 0;
