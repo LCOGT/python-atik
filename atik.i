@@ -49,6 +49,7 @@
 %apply int *OUTPUT {CAMERA_TYPE *type}
 %apply int *OUTPUT {COOLER_TYPE *cooler}
 %apply int *OUTPUT {COOLING_STATE *state}
+%apply int *OUTPUT {COLOUR_STATE *colour}
 
 /* Special mapping to handle char ** output argument */
 %typemap(in, numinputs=0) char **name (char *temp) {
@@ -79,6 +80,10 @@
 
     struct PARAM_MAP {
         enum { QUICKER_START_EXPOSURE_DELAY = 1, QUICKER_READ_CCD_DELAY, MAX_PACKET_SIZE };
+    };
+
+    struct COLOUR_MAP {
+        enum { COLOUR_NONE = 1, COLOUR_RGB };
     };
 %}
 
