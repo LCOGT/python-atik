@@ -129,17 +129,18 @@ class AtikCamera {
     bool AtikDebug = 0;
 
     AtikCamera *getCamera(const int deviceNumber) {
-        AtikCamera *cameras = (AtikCamera*) alloca(sizeof(AtikCamera) * MAX_CAMERA_COUNT);
-        const int cameraCount = AtikCamera::list(&cameras, MAX_CAMERA_COUNT);
+        AtikCamera **cameras = (AtikCamera**) alloca(sizeof(AtikCamera*) * MAX_CAMERA_COUNT);
+        memset(cameras, 0, sizeof(AtikCamera*) * MAX_CAMERA_COUNT); 
+        const int cameraCount = AtikCamera::list(cameras, MAX_CAMERA_COUNT);
         if(cameraCount < deviceNumber + 1) {
             return NULL;
         }
-        return &cameras[deviceNumber];
+        return cameras[deviceNumber];
     }
 
     int numberOfCameras() {
-        AtikCamera *cameras = (AtikCamera*) alloca(sizeof(AtikCamera) * MAX_CAMERA_COUNT);
-        return AtikCamera::list(&cameras, MAX_CAMERA_COUNT);
+        AtikCamera **cameras = (AtikCamera**) alloca(sizeof(AtikCamera*) * MAX_CAMERA_COUNT);
+        return AtikCamera::list(cameras, MAX_CAMERA_COUNT);
     }
 
 %}
